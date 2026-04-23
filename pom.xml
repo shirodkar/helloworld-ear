@@ -68,27 +68,25 @@
                     <target>17</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.jboss.eap.plugins</groupId>
+                <artifactId>eap-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <configuration>
+                    <deployments>
+                        <deployment>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>backend-api</artifactId>
+                            <type>war</type>
+                        </deployment>
+                        <deployment>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>frontend</artifactId>
+                            <type>war</type>
+                        </deployment>
+                    </deployments>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <!-- OpenShift deployment profile -->
-        <profile>
-            <id>openshift</id>
-            <build>
-                <plugins>
-                    <!-- EAP Maven Plugin for OpenShift deployment -->
-                    <plugin>
-                        <groupId>org.jboss.eap.plugins</groupId>
-                        <artifactId>eap-maven-plugin</artifactId>
-                        <version>1.0.0</version>
-                        <configuration>
-                            <filename>helloworld-ear.ear</filename>
-                            <force>true</force>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>
