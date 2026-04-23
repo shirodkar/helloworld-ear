@@ -70,4 +70,25 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <!-- OpenShift deployment profile -->
+        <profile>
+            <id>openshift</id>
+            <build>
+                <plugins>
+                    <!-- WildFly Maven Plugin for OpenShift deployment -->
+                    <plugin>
+                        <groupId>org.wildfly.plugins</groupId>
+                        <artifactId>wildfly-maven-plugin</artifactId>
+                        <version>4.1.0</version>
+                        <configuration>
+                            <filename>helloworld-ear.ear</filename>
+                            <force>true</force>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
