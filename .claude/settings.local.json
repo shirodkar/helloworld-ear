@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mvn clean *)",
+      "Bash(jar tf *)",
+      "Bash(unzip -p ear/target/helloworld-ear.ear META-INF/application.xml)"
+    ]
+  }
+}

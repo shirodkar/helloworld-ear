@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.example.helloworld</groupId>
+        <artifactId>helloworld-ear</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>helloworld-ear-ear</artifactId>
+    <packaging>ear</packaging>
+    <name>Hello World - EAR</name>
+    <description>Jakarta EE 10 Hello World EAR packaging</description>
+
+    <dependencies>
+        <!-- Backend API WAR -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>backend-api</artifactId>
+            <type>war</type>
+        </dependency>
+
+        <!-- Frontend WAR -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>frontend</artifactId>
+            <type>war</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>helloworld-ear</finalName>
+        <plugins>
+            <!-- Maven EAR Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <!-- Specify Jakarta EE 10 -->
+                    <version>10</version>
+                    <!-- Bundle libraries in the EAR -->
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <!-- Configure web modules with custom context roots -->
+                    <modules>
+                        <webModule>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>backend-api</artifactId>
+                            <contextRoot>/api</contextRoot>
+                        </webModule>
+                        <webModule>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>frontend</artifactId>
+                            <contextRoot>/</contextRoot>
+                        </webModule>
+                    </modules>
+                    <!-- Naming pattern for modules -->
+                    <outputFileNameMapping>@{artifactId}@@{dashClassifier?}@.@{extension}@</outputFileNameMapping>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

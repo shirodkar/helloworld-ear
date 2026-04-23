@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World - Jakarta EE 10</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #response {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #4CAF50;
+            display: none;
+        }
+        .error {
+            border-left-color: #f44336 !important;
+            color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hello World - Jakarta EE 10</h1>
+        <p>Welcome to the Hello World Jakarta EE 10 application!</p>
+
+        <p>This is a simple frontend with a backend API. Click the button below to call the REST API.</p>
+
+        <button onclick="callBackendAPI()">Call Backend API</button>
+
+        <div id="response"></div>
+    </div>
+
+    <script>
+        function callBackendAPI() {
+            const responseDiv = document.getElementById('response');
+            responseDiv.style.display = 'block';
+            responseDiv.className = '';
+            responseDiv.innerHTML = 'Loading...';
+
+            fetch('/api/api/hello')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const timestamp = new Date(data.timestamp).toLocaleString();
+                    responseDiv.innerHTML = `
+                        <strong>Response from Backend API:</strong><br>
+                        Message: ${data.message}<br>
+                        Timestamp: ${timestamp}
+                    `;
+                })
+                .catch(error => {
+                    responseDiv.className = 'error';
+                    responseDiv.innerHTML = `
+                        <strong>Error calling backend API:</strong><br>
+                        ${error.message}<br>
+                        <small>Make sure the application is properly deployed and running.</small>
+                    `;
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+</body>
+</html>
