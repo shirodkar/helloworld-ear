@@ -43,6 +43,7 @@
     <modules>
         <module>backend-api</module>
         <module>frontend</module>
+        <module>module/custom-rolemapper</module>
         <module>ear</module>
     </modules>
 
