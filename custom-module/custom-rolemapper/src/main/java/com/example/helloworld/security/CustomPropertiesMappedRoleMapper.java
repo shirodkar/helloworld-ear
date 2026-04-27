@@ -6,11 +6,11 @@ import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
 
-public class CustomRoleMapper {
+public class CustomPropertiesMappedRoleMapper {
 
     private Properties roleMappings;
 
-    public CustomRoleMapper() {
+    public CustomPropertiesMappedRoleMapper() {
         loadRoleMappings();
     }
 
