@@ -2,14 +2,12 @@ package com.example.helloworld.security;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
 import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
 
-public class CustomPropertiesMappedRoleMapper implements InvocationHandler {
+public class CustomPropertiesMappedRoleMapper implements RoleMapper {
 
     private Properties roleMappings;
 
@@ -33,14 +31,10 @@ public class CustomPropertiesMappedRoleMapper implements InvocationHandler {
     }
 
     @Override
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        if ("mapRoles".equals(method.getName())) {
-            Object authorizationIdentity = args[0];
-            String principal = getPrincipalName(authorizationIdentity);
-            Set<String> roleSet = mapRolesForPrincipal(principal);
-            return createRoles(roleSet);
-        }
-        return null;
+    public Object mapRoles(Object authorizationIdentity) {
+        String principal = getPrincipalName(authorizationIdentity);
+        Set<String> roleSet = mapRolesForPrincipal(principal);
+        return createRoles(roleSet);
     }
 
     private String getPrincipalName(Object authorizationIdentity) {
@@ -81,19 +75,6 @@ public class CustomPropertiesMappedRoleMapper implements InvocationHandler {
         }
 
         return roles;
-    }
-
-    public Object createRoleMapperProxy() {
-        try {
-            Class<?> roleMapperClass = Class.forName("org.wildfly.security.auth.server.RoleMapper");
-            return Proxy.newProxyInstance(
-                    roleMapperClass.getClassLoader(),
-                    new Class[]{roleMapperClass},
-                    this
-            );
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to create RoleMapper proxy", e);
-        }
     }
 
     public boolean hasRole(String principal, String requiredRole) {
