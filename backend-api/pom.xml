@@ -69,11 +69,11 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- MySQL JDBC Driver -->
+        <!-- MySQL JDBC Driver (Connector/J) -->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.49</version>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>9.7.0</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -104,9 +104,9 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>mysql</groupId>
-                                    <artifactId>mysql-connector-java</artifactId>
-                                    <version>5.1.49</version>
+                                    <groupId>com.mysql</groupId>
+                                    <artifactId>mysql-connector-j</artifactId>
+                                    <version>9.7.0</version>
                                     <type>jar</type>
                                     <outputDirectory>${project.build.directory}/module-jars</outputDirectory>
                                 </artifactItem>
