@@ -6,6 +6,8 @@
     <dependencies>
         <module name="java.base"/>
         <module name="java.logging"/>
+        <module name="java.sql"/>
+        <module name="java.sql.rowset"/>
     </dependencies>
     <provides>
         <service name="java.sql.Driver">
