@@ -84,9 +84,10 @@
         <h1>Hello World - Jakarta EE 10</h1>
         <p>Welcome to the Hello World Jakarta EE 10 application!</p>
 
-        <p>This is a simple frontend with a backend API. Click the button below to call the REST API.</p>
+        <p>This is a simple frontend with a backend API. Click the buttons below to interact with the backend.</p>
 
         <button onclick="callBackendAPI()">Call Backend API</button>
+        <button onclick="getDatabaseData()">Get Database Data</button>
 
         <div id="response"></div>
     </div>
@@ -119,6 +120,46 @@
                         <strong>Error calling backend API:</strong><br>
                         ${error.message}<br>
                         <small>Make sure the application is properly deployed and running.</small>
+                    `;
+                    console.error('Error:', error);
+                });
+        }
+
+        function getDatabaseData() {
+            const responseDiv = document.getElementById('response');
+            responseDiv.style.display = 'block';
+            responseDiv.className = '';
+            responseDiv.innerHTML = 'Loading database data...';
+
+            fetch('/api/api/data/single')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.error) {
+                        responseDiv.className = 'error';
+                        responseDiv.innerHTML = `
+                            <strong>Database Error:</strong><br>
+                            ${data.error}<br>
+                            <small>Make sure MySQL is configured and running.</small>
+                        `;
+                    } else {
+                        let dataHtml = '<strong>Database Response:</strong><br>';
+                        for (const [key, value] of Object.entries(data)) {
+                            dataHtml += `${key}: ${value}<br>`;
+                        }
+                        responseDiv.innerHTML = dataHtml;
+                    }
+                })
+                .catch(error => {
+                    responseDiv.className = 'error';
+                    responseDiv.innerHTML = `
+                        <strong>Error fetching database data:</strong><br>
+                        ${error.message}<br>
+                        <small>Make sure the database endpoint is available.</small>
                     `;
                     console.error('Error:', error);
                 });
