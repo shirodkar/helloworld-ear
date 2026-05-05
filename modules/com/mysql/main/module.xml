@@ -4,7 +4,12 @@
         <resource-root path="mysql-connector-java-8.0.26.jar"/>
     </resources>
     <dependencies>
-        <module name="javax.api"/>
-        <module name="javax.transaction.api"/>
+        <module name="jakarta.api"/>
+        <module name="jakarta.transaction.api"/>
+        <module name="wildflyee.api"/>
+        <module name="java.se"/>
+        <module name="java.xml"/>
+        <module name="java.xml.crypto"/>
+        <module name="jdk.xml.dom"/>
     </dependencies>
 </module>
