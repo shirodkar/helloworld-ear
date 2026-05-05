@@ -95,7 +95,7 @@ To use the database integration, you need to configure a MySQL datasource in Wil
    ```
 
 3. **Ensure MySQL Driver is Deployed**:
-   Copy `mysql-connector-java-5.1.49.jar` to `$WILDFLY_HOME/modules/system/layers/base/com/mysql/main/`
+   Copy `mysql-connector-j-8.0.33.jar` to `$WILDFLY_HOME/modules/system/layers/base/com/mysql/main/`
 
 ## Usage Examples
 
@@ -139,7 +139,7 @@ curl "http://localhost:8080/api/api/data/all?query=SELECT%20*%20FROM%20users"
 ## Dependencies Added
 
 - `jakarta.persistence:jakarta.persistence-api:3.1.0` - Jakarta Persistence (JPA)
-- `mysql:mysql-connector-java:5.1.49` - MySQL JDBC Driver
+- `mysql:mysql-connector-j:8.0.33` - MySQL JDBC Driver
 
 Both are marked as `provided` scope, assuming they will be provided by the WildFly application server.
 

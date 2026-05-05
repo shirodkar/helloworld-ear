@@ -28,5 +28,5 @@ cp "$CUSTOM_JAR_SOURCE" "$SECURITY_MODULE_DIR/custom-rolemapper.jar"
 echo "Installing mysql module..."
 echo "Target Module Dir: $MYSQL_MODULE_DIR"
 
-MYSQL_JAR_SOURCE="$PROJECT_ROOT/backend-api/target/module-jars/mysql-connector-java-8.0.26.jar"
-cp "$MYSQL_JAR_SOURCE" "$MYSQL_MODULE_DIR/mysql-connector-java-8.0.26.jar"
+MYSQL_JAR_SOURCE="$PROJECT_ROOT/backend-api/target/module-jars/mysql-connector-j-8.0.33.jar"
+cp "$MYSQL_JAR_SOURCE" "$MYSQL_MODULE_DIR/mysql-connector-j-8.0.33.jar"
