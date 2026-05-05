@@ -1,17 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<module xmlns="urn:jboss:module:1.9" name="com.mysql">
-    <resources>
-        <resource-root path="mysql-connector-j-9.7.0.jar"/>
-    </resources>
-    <dependencies>
-        <module name="java.base"/>
-        <module name="java.logging"/>
-        <module name="java.sql"/>
-        <module name="java.sql.rowset"/>
-    </dependencies>
-    <provides>
-        <service name="java.sql.Driver">
-            <implementation name="com.mysql.cj.jdbc.Driver"/>
-        </service>
-    </provides>
+<?xml version="1.0" ?>
+<module xmlns="urn:jboss:module:1.1" name="com.mysql">
+  <resources>
+    <resource-root path="mysql-connector-java-8.0.33.jar"/>
+  </resources>
+  <dependencies>
+    <module name="javaee.api"/>
+    <module name="sun.jdk"/>
+    <module name="ibm.jdk"/>
+    <module name="jakarta.api"/>
+    <module name="jakarta.transaction.api"/>
+  </dependencies>
 </module>
