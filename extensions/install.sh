@@ -6,7 +6,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 SERVER_HOME="${SERVER_HOME:-/opt/server}"
 SECURITY_MODULE_DIR="$SERVER_HOME/modules/com/example/helloworld/security/main"
-MYSQL_MODULE_DIR="$SERVER_HOME/modules/com/mysql/main"
+MYSQL_MODULE_DIR="$SERVER_HOME/modules/system/layers/basecom/mysql/main"
 
 echo "Installing custom modules..."
 echo "Project Root: $PROJECT_ROOT"
