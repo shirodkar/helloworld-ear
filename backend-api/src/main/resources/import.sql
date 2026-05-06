@@ -1,3 +1,3 @@
-insert into greeting (message) values ('Hello, World!');
-insert into greeting (message) values ('Welcome to Jakarta EE!');
-insert into greeting (message) values ('This is a sample application.');
+insert into greetings (message) values ('Hello, World!');
+insert into greetings (message) values ('Welcome to Jakarta EE!');
+insert into greetings (message) values ('This is a sample application.');
