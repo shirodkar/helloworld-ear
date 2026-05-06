@@ -16,7 +16,7 @@ import java.util.Map;
 @Startup
 public class DataService {
 
-    @Resource(lookup = "java:jboss/datasources/MysqlDS")
+    @Resource(lookup = "java:jboss/datasources/PostgreSQLDS")
     private DataSource dataSource;
 
     public Map<String, Object> getDataFromDatabase(String query) {
