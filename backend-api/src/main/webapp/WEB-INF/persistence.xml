@@ -7,7 +7,7 @@
 
     <persistence-unit name="primary" transaction-type="JTA">
         <description>Primary Persistence Unit for Hello World Application</description>
-        <jta-data-source>java:jboss/datasources/MysqlDS</jta-data-source>
+        <jta-data-source>java:jboss/datasources/PostgreSQLDS</jta-data-source>
 
         <!-- Entity classes -->
         <class>com.example.helloworld.entity.User</class>
@@ -16,7 +16,7 @@
 
         <properties>
             <!-- Hibernate configuration -->
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
             <property name="hibernate.hbm2ddl.auto" value="create"/>
             <property name="hibernate.show_sql" value="false"/>
             <property name="hibernate.format_sql" value="true"/>
