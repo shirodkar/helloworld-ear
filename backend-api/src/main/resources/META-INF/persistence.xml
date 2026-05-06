@@ -9,12 +9,6 @@
         <description>Primary Persistence Unit for Hello World Application</description>
         <jta-data-source>java:jboss/datasources/PostgreSQLDS</jta-data-source>
 
-        <!-- Entity classes -->
-        <class>com.example.helloworld.entity.User</class>
-        <class>com.example.helloworld.entity.Product</class>
-        <class>com.example.helloworld.entity.Order</class>
-        <class>com.example.helloworld.entity.Greeting</class>
-
         <properties>
             <!-- Hibernate configuration -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
