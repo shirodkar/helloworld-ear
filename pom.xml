@@ -129,7 +129,7 @@
                                 <layer>postgresql-driver</layer>
                             </layers>
                             <galleon-options>
-                                    <jboss-fork-embedded>true</jboss-fork-embedded>
+                                <jboss-fork-embedded>true</jboss-fork-embedded>
                             </galleon-options>
                         </configuration>
                         <executions>
