@@ -35,7 +35,7 @@ ASCP_MODULE_DIR="$SERVER_HOME/modules/com/cyberark/jdbc/main"
 echo "Target Module Dir: $ASCP_MODULE_DIR"
 
 mkdir -p "$ASCP_MODULE_DIR"
-ASCP_JAR_SOURCE=./CyberArk.jdbc.JBoss.jar
+ASCP_JAR_SOURCE="$PROJECT_ROOT/extensions/CyberArk.jdbc.JBoss.jar"
 if [ ! -f "$ASCP_JAR_SOURCE" ]; then
     echo "ERROR: CyberArk ASCP JAR not found at $ASCP_JAR_SOURCE"
     exit 1
