@@ -131,7 +131,7 @@
             responseDiv.className = '';
             responseDiv.innerHTML = 'Loading database data...';
 
-            fetch('/api/api/data/single')
+            fetch('/api/api/hello/greetings')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
