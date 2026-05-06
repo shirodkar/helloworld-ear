@@ -127,6 +127,8 @@
                                 <layer>elytron-oidc-client</layer>
                                 <layer>postgresql-datasource</layer>
                                 <layer>postgresql-driver</layer>
+                                <layer>mssqlserver-datasource</layer>
+                                <layer>mssqlserver-driver</layer>
                             </layers>
                             <galleon-options>
                                 <jboss-fork-embedded>true</jboss-fork-embedded>
