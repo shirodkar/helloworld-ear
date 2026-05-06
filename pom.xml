@@ -130,16 +130,15 @@
                                 <layer>mssqlserver-datasource</layer>
                                 <layer>mssqlserver-driver</layer>
                             </layers>
-                            <galleon-options>
-                                <jboss-fork-embedded>true</jboss-fork-embedded>
-                            </galleon-options>
-                            <features>
-                                <feature spec="subsystem.datasources.data-source.connection-properties">
-                                    <param name="connection-properties" value="aaa"/>
-                                    <param name="data-source" value="PostgreSQLDS"/>
-                                    <param name="value" value="bbb"/>
-                                </feature>
-                            </features>
+                            <configuration>
+                                <cli-sessions>
+                                    <cli-session>
+                                        <commands>
+                                            <command>/subsystem=datasources/jdbc-driver=ascp:add(driver-name=ascp,driver-module-name=com.cyberark.jdbc,driver-class-name=com.cyberark.jdbc.ASCPDriver)</command>
+                                        </commands>
+                                    </cli-session>
+                                </cli-sessions>
+                            </configuration>
                         </configuration>
                         <executions>
                             <execution>
