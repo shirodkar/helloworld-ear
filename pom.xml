@@ -129,6 +129,7 @@
                                 <layer>postgresql-driver</layer>
                                 <layer>mssqlserver-datasource</layer>
                                 <layer>mssqlserver-driver</layer>
+                                <layer>mail</layer>
                             </layers>
                             <cli-sessions>
                                 <cli-session>
