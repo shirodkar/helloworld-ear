@@ -130,15 +130,13 @@
                                 <layer>mssqlserver-datasource</layer>
                                 <layer>mssqlserver-driver</layer>
                             </layers>
-                            <configuration>
-                                <cli-sessions>
-                                    <cli-session>
-                                        <commands>
-                                            <command>/subsystem=datasources/jdbc-driver=ascp:add(driver-name=ascp,driver-module-name=com.cyberark.jdbc,driver-class-name=com.cyberark.jdbc.ASCPDriver)</command>
-                                        </commands>
-                                    </cli-session>
-                                </cli-sessions>
-                            </configuration>
+                            <cli-sessions>
+                                <cli-session>
+                                    <commands>
+                                        <command>/subsystem=datasources/jdbc-driver=ascp:add(driver-name=ascp,driver-module-name=com.cyberark.jdbc,driver-class-name=com.cyberark.jdbc.ASCPDriver)</command>
+                                    </commands>
+                                </cli-session>
+                            </cli-sessions>
                         </configuration>
                         <executions>
                             <execution>
