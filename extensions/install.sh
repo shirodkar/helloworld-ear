@@ -1,6 +1,9 @@
-#!/bin/bash
-
-set -e
+#!/usr/bin/env bash
+set -x
+echo "Running $PWD/install.sh"
+injected_dir=$1
+# copy any needed files into the target build.
+cp -rf ${injected_dir} $JBOSS_HOME/extensions
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
