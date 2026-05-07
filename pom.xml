@@ -130,6 +130,7 @@
                                 <layer>mssqlserver-datasource</layer>
                                 <layer>mssqlserver-driver</layer>
                                 <layer>mail</layer>
+                                <layer>naming</layer>
                             </layers>
                             <cli-sessions>
                                 <cli-session>
