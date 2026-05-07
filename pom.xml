@@ -130,7 +130,6 @@
                                 <layer>mssqlserver-datasource</layer>
                                 <layer>mssqlserver-driver</layer>
                                 <layer>mail</layer>
-                                <layer>naming</layer>
                             </layers>
                             <packaging-scripts>
                                 <packaging-script>
