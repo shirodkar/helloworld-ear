@@ -1,0 +1,1 @@
+/subsystem=naming/binding="java:global/useSP365ArchitecturSite":add(binding-type=simple, value="true")
