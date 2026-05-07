@@ -132,13 +132,13 @@
                                 <layer>mail</layer>
                                 <layer>naming</layer>
                             </layers>
-                            <cli-sessions>
-                                <cli-session>
+                            <packaging-scripts>
+                                <packaging-script>
                                     <commands>
                                         <command>/subsystem=naming/binding="java:global/useSP365ArchitecturSite":add(binding-type=simple, value="true")</command>
                                     </commands>
-                                </cli-session>
-                            </cli-sessions>
+                                </packaging-script>
+                            </packaging-scripts>
                         </configuration>
                         <executions>
                             <execution>
