@@ -127,8 +127,6 @@
                                 <layer>elytron-oidc-client</layer>
                                 <layer>postgresql-datasource</layer>
                                 <layer>postgresql-driver</layer>
-                                <layer>mssqlserver-datasource</layer>
-                                <layer>mssqlserver-driver</layer>
                                 <layer>mail</layer>
                             </layers>
                             <packaging-scripts>
