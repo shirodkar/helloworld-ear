@@ -124,6 +124,7 @@
                             </feature-packs>
                             <layers>
                                 <layer>cloud-server</layer>
+                                <layer>elytron</layer>
                                 <layer>elytron-oidc-client</layer>
                                 <layer>postgresql-datasource</layer>
                                 <layer>postgresql-driver</layer>
