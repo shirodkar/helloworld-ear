@@ -123,21 +123,24 @@
                             </feature-packs>
                             <layers>
                                 <layer>cloud-server</layer>
+                                <layer>elytron</layer>
                                 <layer>elytron-oidc-client</layer>
                                 <layer>postgresql-datasource</layer>
                                 <layer>postgresql-driver</layer>
-                                <layer>mssqlserver-datasource</layer>
-                                <layer>mssqlserver-driver</layer>
+                                <layer>mail</layer>
                             </layers>
-                            <configuration>
-                                <cli-sessions>
-                                    <cli-session>
-                                        <commands>
-                                            <command>/subsystem=datasources/jdbc-driver=ascp:add(driver-name=ascp,driver-module-name=com.cyberark.jdbc,driver-class-name=com.cyberark.jdbc.ASCPDriver)</command>
-                                        </commands>
-                                    </cli-session>
-                                </cli-sessions>
-                            </configuration>
+                            <packaging-scripts>
+                                <packaging-script>
+                                    <scripts>
+                                        <script>../scripts/configure.cli</script>
+                                    </scripts>
+                                    <!-- <commands>
+                                        <command>/subsystem=naming/binding="java:global/useSP365ArchitecturSite":add(binding-type=simple, value="true")</command>
+                                        <command>/system-property=environment:add(value="dev")</command>
+                                        <command>/system-property=javax.net.ssl.trustStore:add(value="/etc/secrets/keystore/keystore.jks")</command>
+                                    </commands> -->
+                                </packaging-script>
+                            </packaging-scripts>
                         </configuration>
                         <executions>
                             <execution>
