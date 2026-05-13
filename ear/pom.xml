@@ -132,13 +132,8 @@
                             <packaging-scripts>
                                 <packaging-script>
                                     <scripts>
-                                        <script>../scripts/configure.cli</script>
+                                        <script>${project.basedir}/scripts/configure.cli</script>
                                     </scripts>
-                                    <!-- <commands>
-                                        <command>/subsystem=naming/binding="java:global/useSP365ArchitecturSite":add(binding-type=simple, value="true")</command>
-                                        <command>/system-property=environment:add(value="dev")</command>
-                                        <command>/system-property=javax.net.ssl.trustStore:add(value="/etc/secrets/keystore/keystore.jks")</command>
-                                    </commands> -->
                                 </packaging-script>
                             </packaging-scripts>
                         </configuration>
