@@ -133,7 +133,7 @@
                             <packaging-scripts>
                                 <packaging-script>
                                     <scripts>
-                                        <script>scripts/configure.cli</script>
+                                        <script>./scripts/configure.cli</script>
                                     </scripts>
                                     <!-- <commands>
                                         <command>/subsystem=naming/binding="java:global/useSP365ArchitecturSite":add(binding-type=simple, value="true")</command>
