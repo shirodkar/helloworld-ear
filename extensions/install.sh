@@ -7,8 +7,10 @@ cp -rf ${injected_dir} $JBOSS_HOME/extensions
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+SERVER_HOME="${SERVER_HOME:-/opt/server}"
 
 echo "Installing custom modules..."
 echo "Project Root: $PROJECT_ROOT"
+echo "Server Home: $SERVER_HOME"
 
-cp $PROJECT_ROOT/ear/target/module-jars/custom-rolemapper-1.0.0-SNAPSHOT.jar $JBOSS_HOME/modules/com/example/helloworld/security/main/custom-rolemapper.jar
+cp $PROJECT_ROOT/ear/target/module-jars/custom-rolemapper-1.0.0-SNAPSHOT.jar $SERVER_HOME/modules/com/example/helloworld/security/main/custom-rolemapper.jar
