@@ -5,4 +5,4 @@ injected_dir=$1
 # copy any needed files into the target build.
 cp -rf ${injected_dir} $JBOSS_HOME/extensions
 
-cp custom-module/custom-role-mapper.jar $JBOSS_HOME/modules/com/example/helloworld/security/main/
+cp custom-module/custom-rolemapper/target/custom-role-mapper.jar $JBOSS_HOME/modules/com/example/helloworld/security/main/
