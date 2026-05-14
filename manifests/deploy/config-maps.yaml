@@ -9,7 +9,7 @@ data:
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: postgres-config
+  name: keystore-config
 data:
     HTTPS_KEYSTORE: keystore.jks
     HTTPS_KEYSTORE_DIR: /etc/secrets/keystore/
