@@ -1,0 +1,8 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - config-maps.yaml
+  - postgres.yaml
+  - service-accounts.yaml
+  - wildfly-servers.yaml
