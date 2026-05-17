@@ -8,6 +8,7 @@ metadata:
 spec:
   destination:
     server: 'https://kubernetes.default.svc'
+    namespace: hello-world-deploy
   project: default
   source:
     directory:
