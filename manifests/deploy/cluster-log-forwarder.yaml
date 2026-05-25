@@ -24,3 +24,5 @@ spec:
         - mylogs
       outputRefs:
         - rsyslog-server
+  serviceAccount:
+      name: collector
