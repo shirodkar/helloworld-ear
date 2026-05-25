@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jboss-deployment-structure>
-    <deployment>
+    <sub-deployment name="backend-api.war">
         <exclude-subsystems>
             <subsystem name="logging"/>
         </exclude-subsystems>
-    </deployment>
+    </sub-deployment>
 </jboss-deployment-structure>
