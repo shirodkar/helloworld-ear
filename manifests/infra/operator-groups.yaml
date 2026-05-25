@@ -1,13 +1,13 @@
 apiVersion: operators.coreos.com/v1alpha2
 kind: OperatorGroup
 metadata:
-  generateName: external-secrets-operator-
+  name: external-secrets-operator-og
   namespace: external-secrets-operator
 spec: {}
 ---
 apiVersion: operators.coreos.com/v1alpha2
 kind: OperatorGroup
 metadata:
-  generateName: openshift-logging-
+  name: openshift-logging-og
   namespace: openshift-logging
 spec: {}
