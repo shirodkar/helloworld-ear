@@ -4,3 +4,10 @@ metadata:
   generateName: external-secrets-operator-
   namespace: external-secrets-operator
 spec: {}
+---
+apiVersion: operators.coreos.com/v1alpha2
+kind: OperatorGroup
+metadata:
+  generateName: openshift-logging-
+  namespace: openshift-logging
+spec: {}
