@@ -9,6 +9,8 @@ spec:
   env:
     - name: SUBSYSTEM_LOGGING_ROOT_LOGGER_ROOT__LEVEL
       value: INFO
+    - name: APP_LOG_DIR
+      value: /opt/eap/standalone/data/logs
   envFrom:
     - configMapRef:
         name: postgres-config
