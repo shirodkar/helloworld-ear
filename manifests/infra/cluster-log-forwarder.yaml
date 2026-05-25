@@ -4,6 +4,12 @@ metadata:
   name: my-clf
   namespace: openshift-logging
 spec:
+  inputs:
+      - application:
+          includes:
+            - namespace: hello-world-deploy
+        name: mylogs
+        type: application
   outputs:
     - name: rsyslog-server
       type: syslog
@@ -15,8 +21,6 @@ spec:
   pipelines:
     - name: forward-all-logs
       inputRefs:
-        - infrastructure
-        - application
-        - audit
+        - mylogs
       outputRefs:
         - rsyslog-server
