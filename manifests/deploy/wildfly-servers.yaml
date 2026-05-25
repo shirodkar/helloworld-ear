@@ -20,3 +20,9 @@ spec:
         name: keystore-credentials
   secrets:
     - keystore
+  storage:
+    volumeClaimTemplate:
+      spec:
+        resources:
+          requests:
+            storage: 1Gi
