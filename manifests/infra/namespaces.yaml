@@ -17,3 +17,8 @@ kind: Namespace
 apiVersion: v1
 metadata:
   name: openshift-logging
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: hello-world-logging
