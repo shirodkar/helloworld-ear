@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="logDir">${env:APP_LOG_DIR:-/var/log/helloworld}</Property>
+    </Properties>
+
+    <Appenders>
+        <RollingFile name="AppFile"
+                     fileName="${logDir}/application.log"
+                     filePattern="${logDir}/application-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%c] (%t) %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="com.example.helloworld" level="INFO" additivity="false">
+            <AppenderRef ref="AppFile"/>
+        </Logger>
+        <Root level="ERROR">
+        </Root>
+    </Loggers>
+</Configuration>

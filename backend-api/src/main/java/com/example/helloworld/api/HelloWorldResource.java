@@ -12,13 +12,14 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import java.util.List;
-import org.jboss.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Path("/hello")
 @RequestScoped
 public class HelloWorldResource {
 
-    private static final Logger LOG = Logger.getLogger(HelloWorldResource.class);
+    private static final Logger LOG = LogManager.getLogger(HelloWorldResource.class);
 
     @PersistenceContext(unitName = "primary")
     private EntityManager entityManager;
@@ -40,7 +41,7 @@ public class HelloWorldResource {
         LOG.info("getAllGreetings endpoint called");
         List<Greeting> greetings = entityManager.createQuery("SELECT g FROM Greeting g", Greeting.class)
                 .getResultList();
-        LOG.debugf("Retrieved %d greetings from database", greetings.size());
+        LOG.debug("Retrieved {} greetings from database", greetings.size());
 
         JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
         for (Greeting greeting : greetings) {
