@@ -7,3 +7,8 @@ kind: Namespace
 apiVersion: v1
 metadata:
   name: hello-world-deploy
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: external-secrets-operator
