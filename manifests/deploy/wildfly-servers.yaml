@@ -6,6 +6,9 @@ spec:
   applicationImage: 'quay.io/rh_ee_sshirodk/eap8-app-inventory:latest'
   replicas: 1
   serviceAccountName: eap-service-account
+  env:
+    - name: SUBSYSTEM_LOGGING_ROOT_LOGGER_ROOT__LEVEL
+      value: INFO
   envFrom:
     - configMapRef:
         name: postgres-config

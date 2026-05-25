@@ -1,0 +1,631 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: '0'
+  name: vault
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: vault
+    server: 'https://kubernetes.default.svc'
+  ignoreDifferences:
+    - group: admissionregistration.k8s.io
+      jqPathExpressions:
+        - '.webhooks[]?.clientConfig.caBundle'
+      kind: MutatingWebhookConfiguration
+  project: default
+  source:
+    helm:
+      valuesObject:
+        kubernetes:
+          apiserver: 'https://api.cluster-9wl6x.dynamic2.redhatworkshops.io:6443'
+        nameOverride: vault
+        secrets:
+          tpa:
+            cliClientSecret: mOGpwU2sAcz7jtS6V5B81RmTFTN7Hve5
+          kafka:
+            userPassword: KZ5VXBgfjK5b
+          orchestrator:
+            token: JKTYcs1FsIp6iiFC9AeoKyws
+          sonarqube:
+            adminPassword: ''
+          common:
+            password: KZ5VXBgfjK5b
+          keycloak:
+            clientId: backstage
+            clientSecret: IeknBlnfNlFK4zuhC95QbiWs0eJHZVXo
+            openshiftClientSecret: uqwcdRsY5FY3x4YZplD5bOnn7l7lWvek
+            pluginClientId: backstage-plugin
+            pluginClientSecret: XrRiHP0Tyfh9ZriVVOcXsjfHcHz1epwf
+          rhdh:
+            argocdPassword: k7odLXnqj9RyHVtUbNZzli5WMs4JKGA1
+            postgresqlPassword: password
+          gitlab:
+            rootPassword: KZ5VXBgfjK5b
+          litellm:
+            apiKey: sk-BuzSjOb0gjHRFdxfnm3aBw
+            apiUrl: 'https://litellm-prod.apps.maas.redhatworkshops.io/v1'
+        vault:
+          auth:
+            namespace: default
+    path: vault
+    repoURL: 'https://github.com/redhat-ads-tech/ocp-app-platform-demo-helm.git'
+    targetRevision: v1.0.2
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
+status:
+  resources:
+    - kind: ConfigMap
+      name: cm-vault-setup
+      namespace: vault
+      status: Synced
+      syncWave: 3
+      version: v1
+    - kind: ConfigMap
+      name: vault-config
+      namespace: vault
+      status: Synced
+      version: v1
+    - kind: ConfigMap
+      name: vault-unseal-config
+      namespace: vault
+      status: Synced
+      version: v1
+    - kind: Secret
+      name: vault-auth-secret
+      namespace: default
+      status: Synced
+      version: v1
+    - health:
+        status: Healthy
+      kind: Service
+      name: vault
+      namespace: vault
+      status: Synced
+      version: v1
+    - health:
+        status: Healthy
+      kind: Service
+      name: vault-agent-injector-svc
+      namespace: vault
+      status: Synced
+      version: v1
+    - health:
+        status: Healthy
+      kind: Service
+      name: vault-internal
+      namespace: vault
+      status: Synced
+      version: v1
+    - kind: ServiceAccount
+      name: vault-auth
+      namespace: default
+      status: Synced
+      version: v1
+    - kind: ServiceAccount
+      name: vault
+      namespace: vault
+      status: Synced
+      version: v1
+    - kind: ServiceAccount
+      name: vault-agent-injector
+      namespace: vault
+      status: Synced
+      version: v1
+    - kind: ServiceAccount
+      name: vault-setup
+      namespace: vault
+      status: Synced
+      syncWave: 3
+      version: v1
+    - group: admissionregistration.k8s.io
+      kind: MutatingWebhookConfiguration
+      name: vault-agent-injector-cfg
+      status: Synced
+      version: v1
+    - group: apps
+      health:
+        status: Healthy
+      kind: Deployment
+      name: vault-agent-injector
+      namespace: vault
+      status: Synced
+      version: v1
+    - group: apps
+      health:
+        message: statefulset has 1 ready pods
+        status: Healthy
+      kind: StatefulSet
+      name: vault
+      namespace: vault
+      status: Synced
+      version: v1
+    - group: batch
+      health:
+        message: CronJob has completed its last execution successfully
+        status: Healthy
+      kind: CronJob
+      name: vault-auto-unseal
+      namespace: vault
+      status: Synced
+      version: v1
+    - group: batch
+      health:
+        status: Progressing
+      kind: Job
+      name: vault-setup
+      namespace: vault
+      status: Synced
+      syncWave: 3
+      version: v1
+    - group: networking.k8s.io
+      kind: NetworkPolicy
+      name: vault-agent-injector
+      namespace: vault
+      status: Synced
+      version: v1
+    - group: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: vault-agent-injector-clusterrole
+      status: Synced
+      version: v1
+    - group: rbac.authorization.k8s.io
+      kind: ClusterRoleBinding
+      name: role-tokenreview-binding
+      status: Synced
+      version: v1
+    - group: rbac.authorization.k8s.io
+      kind: ClusterRoleBinding
+      name: vault-agent-injector-binding
+      status: Synced
+      version: v1
+    - group: rbac.authorization.k8s.io
+      kind: ClusterRoleBinding
+      name: vault-edit
+      status: Synced
+      version: v1
+    - group: rbac.authorization.k8s.io
+      kind: ClusterRoleBinding
+      name: vault-server-binding
+      status: Synced
+      version: v1
+    - group: rbac.authorization.k8s.io
+      kind: RoleBinding
+      name: rb-vault-setup
+      namespace: vault
+      status: Synced
+      syncWave: 3
+      version: v1
+    - group: route.openshift.io
+      health:
+        message: Route is healthy
+        status: Healthy
+      kind: Route
+      name: vault
+      namespace: vault
+      status: Synced
+      version: v1
+  summary:
+    images:
+      - 'quay.io/agnosticd/ee-multicloud:latest'
+      - 'registry.connect.redhat.com/hashicorp/vault-k8s:1.1.0-ubi'
+      - 'registry.connect.redhat.com/hashicorp/vault:1.12.3-ubi'
+      - 'registry.redhat.io/openshift4/ose-cli:v4.7'
+  reconciledAt: '2026-05-18T01:48:47Z'
+  operationState:
+    finishedAt: '2026-05-18T01:46:36Z'
+    message: successfully synced (all tasks run)
+    operation:
+      initiatedBy:
+        automated: true
+      retry:
+        limit: 5
+      sync:
+        revision: 926cfb9719bb844d46791af4257c0d1307daa722
+        source:
+          helm:
+            valuesObject:
+              kubernetes:
+                apiserver: 'https://api.cluster-9wl6x.dynamic2.redhatworkshops.io:6443'
+              nameOverride: vault
+              secrets:
+                tpa:
+                  cliClientSecret: mOGpwU2sAcz7jtS6V5B81RmTFTN7Hve5
+                kafka:
+                  userPassword: KZ5VXBgfjK5b
+                orchestrator:
+                  token: JKTYcs1FsIp6iiFC9AeoKyws
+                sonarqube:
+                  adminPassword: ''
+                common:
+                  password: KZ5VXBgfjK5b
+                keycloak:
+                  clientId: backstage
+                  clientSecret: IeknBlnfNlFK4zuhC95QbiWs0eJHZVXo
+                  openshiftClientSecret: uqwcdRsY5FY3x4YZplD5bOnn7l7lWvek
+                  pluginClientId: backstage-plugin
+                  pluginClientSecret: XrRiHP0Tyfh9ZriVVOcXsjfHcHz1epwf
+                rhdh:
+                  argocdPassword: k7odLXnqj9RyHVtUbNZzli5WMs4JKGA1
+                  postgresqlPassword: password
+                gitlab:
+                  rootPassword: KZ5VXBgfjK5b
+                litellm:
+                  apiKey: sk-BuzSjOb0gjHRFdxfnm3aBw
+                  apiUrl: 'https://litellm-prod.apps.maas.redhatworkshops.io/v1'
+              vault:
+                auth:
+                  namespace: default
+          path: vault
+          repoURL: 'https://github.com/redhat-ads-tech/ocp-app-platform-demo-helm.git'
+          targetRevision: v1.0.2
+        syncOptions:
+          - CreateNamespace=true
+    phase: Succeeded
+    startedAt: '2026-05-18T01:45:29Z'
+    syncResult:
+      resources:
+        - syncPhase: Sync
+          message: networkpolicy.networking.k8s.io/vault-agent-injector created
+          name: vault-agent-injector
+          status: Synced
+          kind: NetworkPolicy
+          version: v1
+          hookPhase: Succeeded
+          namespace: vault
+          group: networking.k8s.io
+        - syncPhase: Sync
+          message: serviceaccount/vault-agent-injector created
+          name: vault-agent-injector
+          status: Synced
+          kind: ServiceAccount
+          version: v1
+          hookPhase: Succeeded
+          namespace: vault
+          group: ''
+        - syncPhase: Sync
+          message: serviceaccount/vault created
+          name: vault
+          status: Synced
+          kind: ServiceAccount
+          version: v1
+          hookPhase: Succeeded
+          namespace: vault
+          group: ''
+        - syncPhase: Sync
+          message: 'serviceaccount/vault-auth configured. Warning: resource serviceaccounts/vault-auth is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by  apply.  apply should only be used on resources created declaratively by either  create --save-config or  apply. The missing annotation will be patched automatically.'
+          name: vault-auth
+          status: Synced
+          kind: ServiceAccount
+          version: v1
+          hookPhase: Succeeded
+          namespace: default
+          group: ''
+        - syncPhase: Sync
+          message: 'secret/vault-auth-secret configured. Warning: resource secrets/vault-auth-secret is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by  apply.  apply should only be used on resources created declaratively by either  create --save-config or  apply. The missing annotation will be patched automatically.'
+          name: vault-auth-secret
+          status: Synced
+          kind: Secret
+          version: v1
+          hookPhase: Succeeded
+          namespace: default
+          group: ''
+        - syncPhase: Sync
+          message: configmap/vault-config created
+          name: vault-config
+          status: Synced
+          kind: ConfigMap
+          version: v1
+          hookPhase: Succeeded
+          namespace: vault
+          group: ''
+        - syncPhase: Sync
+          message: configmap/vault-unseal-config created
+          name: vault-unseal-config
+          status: Synced
+          kind: ConfigMap
+          version: v1
+          hookPhase: Succeeded
+          namespace: vault
+          group: ''
+        - syncPhase: Sync
+          message: "clusterrole.rbac.authorization.k8s.io/vault-agent-injector-clusterrole reconciled. reconciliation required create\n\tmissing rules added:\n\t\t{Verbs:[get list watch patch] APIGroups:[admissionregistration.k8s.io] Resources:[mutatingwebhookconfigurations] ResourceNames:[] NonResourceURLs:[]}. clusterrole.rbac.authorization.k8s.io/vault-agent-injector-clusterrole configured. Warning: resource clusterroles/vault-agent-injector-clusterrole is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by  apply.  apply should only be used on resources created declaratively by either  create --save-config or  apply. The missing annotation will be patched automatically."
+          name: vault-agent-injector-clusterrole
+          status: Synced
+          kind: ClusterRole
+          version: v1
+          hookPhase: Succeeded
+          namespace: vault
+          group: rbac.authorization.k8s.io
+        - syncPhase: Sync
+          message: "clusterrolebinding.rbac.authorization.k8s.io/vault-agent-injector-binding reconciled. reconciliation required create\n\tmissing subjects added:\n\t\t{Kind:ServiceAccount APIGroup: Name:vault-agent-injector Namespace:vault}. clusterrolebinding.rbac.authorization.k8s.io/vault-agent-injector-binding configured. Warning: resource clusterrolebindings/vault-agent-injector-binding is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by  apply.  apply should only be used on resources created declaratively by either  create --save-config or  apply. The missing annotation will be patched automatically."
+          name: vault-agent-injector-binding
+          status: Synced
+          kind: ClusterRoleBinding
+          version: v1
+          hookPhase: Succeeded
+          namespace: vault
+          group: rbac.authorization.k8s.io
+        - syncPhase: Sync
+          message: "clusterrolebinding.rbac.authorization.k8s.io/vault-server-binding reconciled. reconciliation required create\n\tmissing subjects added:\n\t\t{Kind:ServiceAccount APIGroup: Name:vault Namespace:vault}. clusterrolebinding.rbac.authorization.k8s.io/vault-server-binding configured. Warning: resource clusterrolebindings/vault-server-binding is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by  apply.  apply should only be used on resources created declaratively by either  create --save-config or  apply. The missing annotation will be patched automatically."
+          name: vault-server-binding
+          status: Synced
+          kind: ClusterRoleBinding
+          version: v1
+          hookPhase: Succeeded
+          namespace: vault
+          group: rbac.authorization.k8s.io
+        - syncPhase: Sync
+          message: "clusterrolebinding.rbac.authorization.k8s.io/vault-edit reconciled. reconciliation required create\n\tmissing subjects added:\n\t\t{Kind:ServiceAccount APIGroup: Name:vault Namespace:vault}. clusterrolebinding.rbac.authorization.k8s.io/vault-edit configured. Warning: resource clusterrolebindings/vault-edit is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by  apply.  apply should only be used on resources created declaratively by either  create --save-config or  apply. The missing annotation will be patched automatically."
+          name: vault-edit
+          status: Synced
+          kind: ClusterRoleBinding
+          version: v1
+          hookPhase: Succeeded
+          namespace: vault
+          group: rbac.authorization.k8s.io
+        - syncPhase: Sync
+          message: "clusterrolebinding.rbac.authorization.k8s.io/role-tokenreview-binding reconciled. reconciliation required create\n\tmissing subjects added:\n\t\t{Kind:ServiceAccount APIGroup: Name:vault-auth Namespace:default}. clusterrolebinding.rbac.authorization.k8s.io/role-tokenreview-binding configured. Warning: resource clusterrolebindings/role-tokenreview-binding is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by  apply.  apply should only be used on resources created declaratively by either  create --save-config or  apply. The missing annotation will be patched automatically."
+          name: role-tokenreview-binding
+          status: Synced
+          kind: ClusterRoleBinding
+          version: v1
+          hookPhase: Succeeded
+          namespace: vault
+          group: rbac.authorization.k8s.io
+        - syncPhase: Sync
+          message: service/vault created
+          name: vault
+          status: Synced
+          kind: Service
+          version: v1
+          hookPhase: Succeeded
+          namespace: vault
+          group: ''
+        - syncPhase: Sync
+          message: service/vault-agent-injector-svc created
+          name: vault-agent-injector-svc
+          status: Synced
+          kind: Service
+          version: v1
+          hookPhase: Succeeded
+          namespace: vault
+          group: ''
+        - syncPhase: Sync
+          message: service/vault-internal created
+          name: vault-internal
+          status: Synced
+          kind: Service
+          version: v1
+          hookPhase: Succeeded
+          namespace: vault
+          group: ''
+        - syncPhase: Sync
+          message: deployment.apps/vault-agent-injector created
+          name: vault-agent-injector
+          status: Synced
+          kind: Deployment
+          version: v1
+          hookPhase: Succeeded
+          images:
+            - 'registry.connect.redhat.com/hashicorp/vault-k8s:1.1.0-ubi'
+          namespace: vault
+          group: apps
+        - syncPhase: Sync
+          message: statefulset has 1 ready pods
+          name: vault
+          status: Synced
+          kind: StatefulSet
+          version: v1
+          hookPhase: Succeeded
+          images:
+            - 'registry.connect.redhat.com/hashicorp/vault:1.12.3-ubi'
+          namespace: vault
+          group: apps
+        - syncPhase: Sync
+          message: CronJob has not been scheduled yet
+          name: vault-auto-unseal
+          status: Synced
+          kind: CronJob
+          version: v1
+          hookPhase: Succeeded
+          images:
+            - 'registry.redhat.io/openshift4/ose-cli:v4.7'
+          namespace: vault
+          group: batch
+        - syncPhase: Sync
+          message: Route is healthy
+          name: vault
+          status: Synced
+          kind: Route
+          version: v1
+          hookPhase: Succeeded
+          namespace: vault
+          group: route.openshift.io
+        - syncPhase: Sync
+          message: mutatingwebhookconfiguration.admissionregistration.k8s.io/vault-agent-injector-cfg created
+          name: vault-agent-injector-cfg
+          status: Synced
+          kind: MutatingWebhookConfiguration
+          version: v1
+          hookPhase: Succeeded
+          namespace: vault
+          group: admissionregistration.k8s.io
+        - syncPhase: Sync
+          message: serviceaccount/vault-setup created
+          name: vault-setup
+          status: Synced
+          kind: ServiceAccount
+          version: v1
+          hookPhase: Running
+          namespace: vault
+          group: ''
+        - syncPhase: Sync
+          message: configmap/cm-vault-setup created
+          name: cm-vault-setup
+          status: Synced
+          kind: ConfigMap
+          version: v1
+          hookPhase: Running
+          namespace: vault
+          group: ''
+        - syncPhase: Sync
+          message: "rolebinding.rbac.authorization.k8s.io/rb-vault-setup reconciled. reconciliation required create\n\tmissing subjects added:\n\t\t{Kind:ServiceAccount APIGroup: Name:vault-setup Namespace:vault}. rolebinding.rbac.authorization.k8s.io/rb-vault-setup configured. Warning: resource rolebindings/rb-vault-setup is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by  apply.  apply should only be used on resources created declaratively by either  create --save-config or  apply. The missing annotation will be patched automatically."
+          name: rb-vault-setup
+          status: Synced
+          kind: RoleBinding
+          version: v1
+          hookPhase: Running
+          namespace: vault
+          group: rbac.authorization.k8s.io
+        - syncPhase: Sync
+          message: job.batch/vault-setup created
+          name: vault-setup
+          status: Synced
+          kind: Job
+          version: v1
+          hookPhase: Running
+          images:
+            - 'quay.io/agnosticd/ee-multicloud:latest'
+          namespace: vault
+          group: batch
+      revision: 926cfb9719bb844d46791af4257c0d1307daa722
+      source:
+        helm:
+          valuesObject:
+            kubernetes:
+              apiserver: 'https://api.cluster-9wl6x.dynamic2.redhatworkshops.io:6443'
+            nameOverride: vault
+            secrets:
+              tpa:
+                cliClientSecret: mOGpwU2sAcz7jtS6V5B81RmTFTN7Hve5
+              kafka:
+                userPassword: KZ5VXBgfjK5b
+              orchestrator:
+                token: JKTYcs1FsIp6iiFC9AeoKyws
+              sonarqube:
+                adminPassword: ''
+              common:
+                password: KZ5VXBgfjK5b
+              keycloak:
+                clientId: backstage
+                clientSecret: IeknBlnfNlFK4zuhC95QbiWs0eJHZVXo
+                openshiftClientSecret: uqwcdRsY5FY3x4YZplD5bOnn7l7lWvek
+                pluginClientId: backstage-plugin
+                pluginClientSecret: XrRiHP0Tyfh9ZriVVOcXsjfHcHz1epwf
+              rhdh:
+                argocdPassword: k7odLXnqj9RyHVtUbNZzli5WMs4JKGA1
+                postgresqlPassword: password
+              gitlab:
+                rootPassword: KZ5VXBgfjK5b
+              litellm:
+                apiKey: sk-BuzSjOb0gjHRFdxfnm3aBw
+                apiUrl: 'https://litellm-prod.apps.maas.redhatworkshops.io/v1'
+            vault:
+              auth:
+                namespace: default
+        path: vault
+        repoURL: 'https://github.com/redhat-ads-tech/ocp-app-platform-demo-helm.git'
+        targetRevision: v1.0.2
+  sourceHydrator: {}
+  history:
+    - deployStartedAt: '2026-05-18T01:45:29Z'
+      deployedAt: '2026-05-18T01:46:36Z'
+      id: 0
+      initiatedBy:
+        automated: true
+      revision: 926cfb9719bb844d46791af4257c0d1307daa722
+      source:
+        helm:
+          valuesObject:
+            kubernetes:
+              apiserver: 'https://api.cluster-9wl6x.dynamic2.redhatworkshops.io:6443'
+            nameOverride: vault
+            secrets:
+              tpa:
+                cliClientSecret: mOGpwU2sAcz7jtS6V5B81RmTFTN7Hve5
+              kafka:
+                userPassword: KZ5VXBgfjK5b
+              orchestrator:
+                token: JKTYcs1FsIp6iiFC9AeoKyws
+              sonarqube:
+                adminPassword: ''
+              common:
+                password: KZ5VXBgfjK5b
+              keycloak:
+                clientId: backstage
+                clientSecret: IeknBlnfNlFK4zuhC95QbiWs0eJHZVXo
+                openshiftClientSecret: uqwcdRsY5FY3x4YZplD5bOnn7l7lWvek
+                pluginClientId: backstage-plugin
+                pluginClientSecret: XrRiHP0Tyfh9ZriVVOcXsjfHcHz1epwf
+              rhdh:
+                argocdPassword: k7odLXnqj9RyHVtUbNZzli5WMs4JKGA1
+                postgresqlPassword: password
+              gitlab:
+                rootPassword: KZ5VXBgfjK5b
+              litellm:
+                apiKey: sk-BuzSjOb0gjHRFdxfnm3aBw
+                apiUrl: 'https://litellm-prod.apps.maas.redhatworkshops.io/v1'
+            vault:
+              auth:
+                namespace: default
+        path: vault
+        repoURL: 'https://github.com/redhat-ads-tech/ocp-app-platform-demo-helm.git'
+        targetRevision: v1.0.2
+  sourceType: Helm
+  sync:
+    comparedTo:
+      destination:
+        namespace: vault
+        server: 'https://kubernetes.default.svc'
+      ignoreDifferences:
+        - group: admissionregistration.k8s.io
+          jqPathExpressions:
+            - '.webhooks[]?.clientConfig.caBundle'
+          kind: MutatingWebhookConfiguration
+      source:
+        helm:
+          valuesObject:
+            kubernetes:
+              apiserver: 'https://api.cluster-9wl6x.dynamic2.redhatworkshops.io:6443'
+            nameOverride: vault
+            secrets:
+              tpa:
+                cliClientSecret: mOGpwU2sAcz7jtS6V5B81RmTFTN7Hve5
+              kafka:
+                userPassword: KZ5VXBgfjK5b
+              orchestrator:
+                token: JKTYcs1FsIp6iiFC9AeoKyws
+              sonarqube:
+                adminPassword: ''
+              common:
+                password: KZ5VXBgfjK5b
+              keycloak:
+                clientId: backstage
+                clientSecret: IeknBlnfNlFK4zuhC95QbiWs0eJHZVXo
+                openshiftClientSecret: uqwcdRsY5FY3x4YZplD5bOnn7l7lWvek
+                pluginClientId: backstage-plugin
+                pluginClientSecret: XrRiHP0Tyfh9ZriVVOcXsjfHcHz1epwf
+              rhdh:
+                argocdPassword: k7odLXnqj9RyHVtUbNZzli5WMs4JKGA1
+                postgresqlPassword: password
+              gitlab:
+                rootPassword: KZ5VXBgfjK5b
+              litellm:
+                apiKey: sk-BuzSjOb0gjHRFdxfnm3aBw
+                apiUrl: 'https://litellm-prod.apps.maas.redhatworkshops.io/v1'
+            vault:
+              auth:
+                namespace: default
+        path: vault
+        repoURL: 'https://github.com/redhat-ads-tech/ocp-app-platform-demo-helm.git'
+        targetRevision: v1.0.2
+    revision: 926cfb9719bb844d46791af4257c0d1307daa722
+    status: Synced
+  health:
+    lastTransitionTime: '2026-05-18T01:46:36Z'
+    status: Progressing
+  controllerNamespace: openshift-gitops

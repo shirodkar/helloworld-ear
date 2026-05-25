@@ -1,0 +1,22 @@
+apiVersion: observability.openshift.io/v1
+kind: ClusterLogForwarder
+metadata:
+  name: my-clf
+  namespace: openshift-logging
+spec:
+  outputs:
+    - name: rsyslog-server
+      type: syslog
+      syslog:
+        rfc: RFC5424
+        severity: informational
+        facility: local0
+      url: udp://10.232.0.196:514
+  pipelines:
+    - name: forward-all-logs
+      inputRefs:
+        - infrastructure
+        - application
+        - audit
+      outputRefs:
+        - rsyslog-server
