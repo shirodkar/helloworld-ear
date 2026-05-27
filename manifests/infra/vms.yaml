@@ -63,3 +63,22 @@ spec:
               password: fky4-0we3-8iwz
               user: rhel
           name: cloudinitdisk
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: headless
+  namespace: hello-world-logging
+spec:
+  ports:
+    - name: headless
+      protocol: TCP
+      port: 5434
+      targetPort: 5434
+    - name: udp
+      protocol: UDP
+      port: 514
+      targetPort: 514
+  type: ClusterIP
+  selector:
+    network.kubevirt.io/headlessService: headless
