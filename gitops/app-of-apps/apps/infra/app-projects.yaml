@@ -15,10 +15,6 @@ spec:
       server: 'https://kubernetes.default.svc'
     - namespace: hello-world-s2i
       server: 'https://kubernetes.default.svc'
-    - namespace: openshift-gitops
-      server: 'https://kubernetes.default.svc'
-    - namespace: ''
-      server: 'https://kubernetes.default.svc'
   namespaceResourceBlacklist:
     - group: ''
       kind: ResourceQuota
