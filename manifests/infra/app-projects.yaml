@@ -30,5 +30,5 @@ spec:
       - developers
       name: devops-admin
       policies:
-      - p, proj:poc-app-project:devops-admin, applications, *, poc-app-project/*, allow
-      - p, proj:poc-app-project:devops-admin, exec, create, poc-app-project/*, allow
+      - p, proj:hello-world-app-project:devops-admin, applications, *, hello-world-app-project/*, allow
+      - p, proj:hello-world-app-project:devops-admin, exec, create, hello-world-app-project/*, allow
