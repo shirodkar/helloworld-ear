@@ -5,6 +5,9 @@
     </Properties>
 
     <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%c] (%t) %m%n"/>
+        </Console>
         <RollingFile name="AppFile"
                      fileName="${logDir}/application.log"
                      filePattern="${logDir}/application-%d{yyyy-MM-dd}.log">
@@ -17,9 +20,11 @@
 
     <Loggers>
         <Logger name="com.example.helloworld" level="INFO" additivity="false">
+            <AppenderRef ref="Console"/>
             <AppenderRef ref="AppFile"/>
         </Logger>
         <Root level="ERROR">
+            <AppenderRef ref="Console"/>
         </Root>
     </Loggers>
 </Configuration>
