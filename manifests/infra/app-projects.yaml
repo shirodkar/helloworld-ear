@@ -7,7 +7,7 @@ spec:
   clusterResourceBlacklist:
     - group: '*'
       kind: '*'
-  description: POC App Project
+  description: Hello World App Project
   destinations:
     - namespace: '*'
       server: '*'
