@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: poc-app-project
+  name: hello-world-app-project
   namespace: openshift-gitops
 spec:
   clusterResourceBlacklist:
