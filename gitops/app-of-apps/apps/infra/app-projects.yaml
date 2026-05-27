@@ -9,9 +9,7 @@ spec:
       kind: '*'
   description: POC App Project
   destinations:
-    - namespace: hello-world-deploy
-      server: 'https://kubernetes.default.svc'
-    - namespace: hello-world-s2i
+    - namespace: '*'
       server: 'https://kubernetes.default.svc'
   namespaceResourceBlacklist:
     - group: ''
