@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: hello-world-app-project
-  namespace: openshift-gitops
+  namespace: shared-gitops
 spec:
   clusterResourceBlacklist:
     - group: '*'

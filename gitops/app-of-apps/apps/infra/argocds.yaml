@@ -201,21 +201,6 @@ spec:
         memory: 2Gi
     sharding: {}
 ---
-apiVersion: argoproj.io/v1alpha1
-kind: AppProject
-metadata:
-  name: project-demo-rollouts
-  namespace: shared-gitops
-spec:
-  clusterResourceWhitelist:
-    - group: '*'
-      kind: '*'
-  destinations:
-    - namespace: '*'
-      server: '*'
-  sourceRepos:
-    - '*'
----
 apiVersion: argoproj.io/v1beta1
 kind: ArgoCD
 metadata:

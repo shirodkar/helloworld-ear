@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: hello-world-s2i
-  namespace: openshift-gitops
+  namespace: shared-gitops
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
