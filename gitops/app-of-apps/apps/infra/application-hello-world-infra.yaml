@@ -8,7 +8,7 @@ metadata:
 spec:
   destination:
     server: 'https://kubernetes.default.svc'
-  project: hello-world-app-project
+  project: default
   source:
     directory:
       recurse: true
