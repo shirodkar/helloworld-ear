@@ -12,7 +12,7 @@ spec:
   source:
     directory:
       recurse: true
-    path: gitops/app-of-apps/apps
+    path: gitops/app-of-apps/apps/infra
     repoURL: 'https://github.com/shirodkar/helloworld-ear.git'
     targetRevision: HEAD
   syncPolicy:
