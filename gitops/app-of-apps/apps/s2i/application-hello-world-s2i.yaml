@@ -8,7 +8,7 @@ metadata:
 spec:
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: demo
+    namespace: hello-world-s2i
   project: hello-world-app-project
   source:
     directory:
