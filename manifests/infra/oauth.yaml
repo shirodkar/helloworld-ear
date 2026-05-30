@@ -1,0 +1,21 @@
+kind: Secret
+apiVersion: v1
+metadata:
+  name: my-htpasswd
+  namespace: openshift-config
+data:
+  htpasswd: YWRtaW46JGFwcjEkRWhibjZncUYkTlJCNkVveEVHNmljbjBFb0xKaWtlLgpkZXZlbG9wZXI6JGFwcjEkU3o3SnlXNWYkVk54bTFRWWxHamZsY3haeFBMSDhkMAp0ZXN0ZXI6JGFwcjEkcDZUR0JjVDkkeEt1REthRjdXVGZaZldvaHFtelBoMApsZWFkZXI6JGFwcjEkY0NiVEd4VHUkU05aNDB5NXdKMnlkZmFBeFlLcnV2LgptYW5hZ2VyOiRhcHIxJHkzbjVoQ0FEJGVubDIxNmJlN0JnSTl4Zm5wbU5rbjEK
+type: Opaque
+---
+apiVersion: config.openshift.io/v1
+kind: OAuth
+metadata:
+  name: cluster
+spec:
+  identityProviders:
+    - htpasswd:
+        fileData:
+          name: my-htpasswd
+      mappingMethod: claim
+      name: my-htpasswd
+      type: HTPasswd
