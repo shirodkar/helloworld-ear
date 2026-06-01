@@ -4,9 +4,16 @@ A simple multi-module Jakarta EE 10 Enterprise Archive (EAR) application demonst
 
 ```
 oc apply -f gitops/init.yaml
+oc get pods -n openshift-gitops --watch
+
 oc apply -f gitops/app-of-apps/application-of-apps.yaml
+oc get projects | grep hello-world-
+
 oc apply -f manifests/s2i/secrets.yaml -n hello-world-s2i
 oc apply -f manifests/deploy/secrets.yaml -n hello-world-deploy
+oc get pods -n hello-world-deploy --watch
+
+oc get route -n hello-world-deploy
 ```
 
 
