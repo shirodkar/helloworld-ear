@@ -121,6 +121,9 @@
                                     <location>org.jboss.eap:eap-datasources-galleon-pack</location>
                                 </feature-pack>
                             </feature-packs>
+                            <extra-server-content-dirs>
+							    <extra-content>extra-content</extra-content>
+						    </extra-server-content-dirs>
                             <layers>
                                 <layer>cloud-server</layer>
                                 <layer>elytron</layer>
@@ -129,6 +132,7 @@
                                 <layer>postgresql-driver</layer>
                                 <layer>mail</layer>
                             </layers>
+
                             <packaging-scripts>
                                 <packaging-script>
                                     <scripts>
