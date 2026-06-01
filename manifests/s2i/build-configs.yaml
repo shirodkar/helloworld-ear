@@ -25,7 +25,7 @@ spec:
         - name: ARTIFACT_DIR
           value: ear/target
         - name: POSTGRESQL_DRIVER_VERSION
-          value: '42.7.0'
+          value: '42.7.11'
       incremental: true
       forcePull: true
   source:

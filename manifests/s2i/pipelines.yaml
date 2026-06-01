@@ -60,7 +60,7 @@ spec:
           value:
             - CUSTOM_INSTALL_DIRECTORIES=extensions
             - ARTIFACT_DIR=ear/target
-            - POSTGRESQL_DRIVER_VERSION=42.7.0
+            - POSTGRESQL_DRIVER_VERSION=42.7.11
         - name: CONTEXT
           value: .
         - name: STORAGE_DRIVER
