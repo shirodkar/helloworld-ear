@@ -25,6 +25,5 @@ spec:
       jsonPointers:
         - /imagePullSecrets
     - kind: Console
-      version: operator.openshift.io/v1
       jsonPointers:
         - /plugins
