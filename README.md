@@ -2,6 +2,14 @@
 
 A simple multi-module Jakarta EE 10 Enterprise Archive (EAR) application demonstrating best practices for packaging a frontend web application with a backend REST API.
 
+```
+oc apply -f gitops/init.yaml
+oc apply -f gitops/app-of-apps/application-of-apps.yaml
+oc apply -f manifests/s2i/secrets.yaml -n hello-world-s2i
+oc apply -f manifests/deploy/secrets.yaml -n hello-world-deploy
+```
+
+
 ## Project Overview
 
 This project showcases a complete Jakarta EE 10 application structure with:
