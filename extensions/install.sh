@@ -13,4 +13,4 @@ echo "Installing custom modules..."
 echo "Project Root: $PROJECT_ROOT"
 echo "Server Home: $SERVER_HOME"
 
-cp $PROJECT_ROOT/ear/target/module-jars/custom-rolemapper-1.0.0-SNAPSHOT.jar $SERVER_HOME/modules/com/example/helloworld/security/main/custom-rolemapper.jar
+cp -r $PROJECT_ROOT/ear/target/module-jars/modules/ $SERVER_HOME/modules/

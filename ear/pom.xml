@@ -54,7 +54,7 @@
                                     <artifactId>custom-rolemapper</artifactId>
                                     <version>${project.version}</version>
                                     <type>jar</type>
-                                    <outputDirectory>${project.build.directory}/module-jars</outputDirectory>
+                                    <outputDirectory>${project.build.directory}/module-jars/modules/com/example/helloworld/security/main</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
@@ -123,6 +123,7 @@
                             </feature-packs>
                             <extra-server-content-dirs>
 							    <extra-content>extra-content</extra-content>
+                                <exta-content>${project.build.directory}/module-jars</exta-content>
 						    </extra-server-content-dirs>
                             <layers>
                                 <layer>cloud-server</layer>
