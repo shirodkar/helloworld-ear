@@ -25,4 +25,6 @@ spec:
   storage:
     volumeClaimTemplate:
       spec:
-        volumeName: hello-world-storage
+        resources:
+          requests:
+            storage: 1Gi
