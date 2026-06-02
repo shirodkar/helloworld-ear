@@ -24,6 +24,3 @@ spec:
     - kind: ServiceAccount
       jsonPointers:
         - /imagePullSecrets
-    - kind: Console
-      jsonPointers:
-        - /plugins
