@@ -10,7 +10,7 @@ oc get pods -n openshift-gitops --watch
 Deploy:
 ```
 oc apply -f gitops/app-of-apps/application-of-apps.yaml
-oc get projects | grep hello-world-
+oc get projects --watch | grep hello-world-
 ```
 Add Secrets:
 ```
