@@ -19,6 +19,7 @@ dependency-reduced-pom.xml
 *.swo
 *~
 .DS_Store
+.claude
 
 # Build output
 *.class
