@@ -2,29 +2,6 @@
 
 A simple multi-module Jakarta EE 10 Enterprise Archive (EAR) application demonstrating best practices for packaging a frontend web application with a backend REST API.
 
-Init:
-```
-oc apply -f gitops/init.yaml
-oc get pods -n openshift-gitops --watch
-```
-Deploy:
-```
-oc apply -f gitops/app-of-apps/application-of-apps.yaml
-oc patch console.operator.openshift.io cluster --type=json -p '[{"op":"add","path":"/spec/plugins/-","value":"gitops-plugin"}]'
-oc get projects --watch | grep hello-world-
-```
-Add Secrets:
-```
-oc apply -f manifests/s2i/secrets.yaml -n hello-world-s2i
-oc apply -f manifests/deploy/secrets.yaml -n hello-world-deploy
-oc get pods -n hello-world-deploy --watch
-```
-Test
-```
-oc get route -n hello-world-deploy
-```
-
-
 ## Project Overview
 
 This project showcases a complete Jakarta EE 10 application structure with:
