@@ -62,6 +62,29 @@
                 </executions>
             </plugin>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-scm-plugin</artifactId>
+                <version>2.0.1</version>
+                <executions>
+                    <execution>
+                        <id>checkout-external-repo</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>checkout</goal>
+                        </goals>
+                        <configuration>
+                            <!-- SCM Connection URL format: scm:git:git:// or scm:git:https:// -->
+                            <connectionUrl>scm:git:https://github.com/shirodkar/my-gitops.git</connectionUrl>
+                            <scmVersion>main</scmVersion>
+                            <scmVersionType>branch</scmVersionType>
+                            <includes>applications/helloworld-ear/eap/**/*</includes>
+                            <checkoutDirectory>${project.build.directory}/eap-dependencies</checkoutDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <!-- Maven EAR Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -122,7 +145,7 @@
                                 </feature-pack>
                             </feature-packs>
                             <extra-server-content-dirs>
-							    <extra-content>extra-content</extra-content>
+							    <extra-content>${project.build.directory}/eap-dependencies/applications/helloworld-ear/eap/extra-content</extra-content>
                                 <exta-content>${project.build.directory}/module-jars</exta-content>
 						    </extra-server-content-dirs>
                             <layers>
@@ -137,7 +160,7 @@
                             <packaging-scripts>
                                 <packaging-script>
                                     <scripts>
-                                        <script>${project.basedir}/scripts/configure.cli</script>
+                                        <script>${project.build.directory}/eap-dependencies/applications/helloworld-ear/eap/scripts/configure.cli</script>
                                     </scripts>
                                 </packaging-script>
                             </packaging-scripts>
