@@ -1,4 +1,4 @@
-# Jakarta EE 10 Hello World - EAR Project
+# Jakarta EE 10 Hello World with DB - EAR Project
 
 A simple multi-module Jakarta EE 10 Enterprise Archive (EAR) application demonstrating best practices for packaging a frontend web application with a backend REST API.
 
@@ -12,7 +12,7 @@ This project showcases a complete Jakarta EE 10 application structure with:
 ## Project Structure
 
 ```
-helloworld-ear/
+helloworld-with-db-ear/
 ├── backend-api/          # REST API module (WAR)
 │   ├── pom.xml
 │   └── src/main/

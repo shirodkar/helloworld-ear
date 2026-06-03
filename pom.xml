@@ -6,10 +6,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example.helloworld</groupId>
-    <artifactId>helloworld-ear</artifactId>
+    <artifactId>helloworld-with-db-ear</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>Jakarta EE 10 Hello World - EAR</name>
+    <name>Jakarta EE 10 Hello World with DB - EAR</name>
     <description>Jakarta EE 10 Hello World application with frontend and backend API in an EAR</description>
 
     <properties>
