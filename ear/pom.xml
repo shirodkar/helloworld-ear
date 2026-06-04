@@ -78,7 +78,7 @@
                             <connectionUrl>scm:git:https://github.com/shirodkar/my-gitops.git</connectionUrl>
                             <scmVersion>main</scmVersion>
                             <scmVersionType>branch</scmVersionType>
-                            <includes>devops/eap/applications/helloworld-ear/**/*</includes>
+                            <includes>eap/applications/helloworld-ear/**/*</includes>
                             <checkoutDirectory>${project.build.directory}/eap-dependencies</checkoutDirectory>
                         </configuration>
                     </execution>
@@ -145,7 +145,7 @@
                                 </feature-pack>
                             </feature-packs>
                             <extra-server-content-dirs>
-							    <extra-content>${project.build.directory}/eap-dependencies/devops/eap/applications/helloworld-ear/extra-content</extra-content>
+							    <extra-content>${project.build.directory}/eap-dependencies/eap/applications/helloworld-ear/extra-content</extra-content>
                                 <exta-content>${project.build.directory}/module-jars</exta-content>
 						    </extra-server-content-dirs>
                             <layers>
@@ -160,7 +160,7 @@
                             <packaging-scripts>
                                 <packaging-script>
                                     <scripts>
-                                        <script>${project.build.directory}/eap-dependencies/devops/eap/applications/helloworld-ear/scripts/configure.cli</script>
+                                        <script>${project.build.directory}/eap-dependencies/eap/applications/helloworld-ear/scripts/configure.cli</script>
                                     </scripts>
                                 </packaging-script>
                             </packaging-scripts>
